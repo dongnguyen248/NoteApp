@@ -13,4 +13,12 @@ class NotesApiController extends Controller
         $notes = Note::all();
         return response()->json($notes);
     }
+    public function store(Request $request)
+    {
+        $note = new Note();
+        $note->title = $request->get('title');
+        $note->body = $request->get('body');
+        $note->save();
+        return response()->json($note);
+    }
 }

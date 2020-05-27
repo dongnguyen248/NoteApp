@@ -30,12 +30,7 @@ export default {
   },
   data() {
     return {
-      notes: [],
-      note: {
-        id: 0,
-        title: "",
-        body: ""
-      }
+      notes: []
     };
   },
   mounted() {

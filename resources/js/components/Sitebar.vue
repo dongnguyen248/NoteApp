@@ -6,7 +6,7 @@
     <nav id="sidebar" class="sidebar-wrapper">
       <div class="sidebar-content">
         <div class="sidebar-brand">
-          <a href="#">Note App</a>
+          <a href="/notes">Note App</a>
         </div>
         <div class="sidebar-header">
           <div class="user-pic">
@@ -48,7 +48,7 @@
               <span>General</span>
             </li>
             <li class="sidebar">
-              <a href="#">
+              <a href="/notes/create">
                 <i class="fas fa-plus"></i>
                 <span>New</span>
               </a>
