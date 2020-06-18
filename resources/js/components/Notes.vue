@@ -1,6 +1,8 @@
 <template>
   <div>
     <sitebar></sitebar>
+    <create @created="add"></create>
+
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card">
@@ -8,11 +10,11 @@
             <li v-for="note in notes" :key="note.id">
               <a href="#">
                 <span id="deleteNote">
-                  <i class="fas fa-times" @click.prevent="deleteNote"></i>
+                  <i class="fas fa-times"></i>
                 </span>
-                <h2>{{note.title}}</h2>
-                <p v-if=" note.body.length<70 ">{{note.body}}</p>
-                <p v-else="note.body.length">{{note.body.substring(0,70)+"..."}}</p>
+                <h2>{{ note.title }}</h2>
+                <p v-if="note.body.length < 70">{{ note.body }}</p>
+                <p v-else="note.body.length">{{ note.body.substring(0, 70) + "..." }}</p>
               </a>
             </li>
           </ul>
@@ -24,27 +26,37 @@
 
 <script>
 import sitebar from "./Sitebar";
+import Create from "./Create";
+// import Note from "./Note";
 export default {
   components: {
-    sitebar
+    sitebar,
+    Create
+    // Note
   },
   data() {
     return {
       notes: []
     };
   },
-  mounted() {
-    this.getNotes();
+  created() {
+    this.fetch("api/notes");
   },
+
   methods: {
-    getNotes() {
-      axios.get("/api/notes").then(response => {
-        console.log(response);
-        this.notes = response.data;
-      });
+    show() {
+      this.$modal.show("note");
     },
-    deleteNote() {
-      axios.delete(`/notes/${this.id}`).then(console.log("delete success"));
+    add(note) {
+      this.notes.push(note);
+    },
+    remove() {},
+    fetch(endpoint) {
+      axios.get(endpoint, this.notes).then(response => {
+        // console.log(response.data);
+        this.notes = response.data;
+        // console.log(this.notes);
+      });
     }
   }
 };

@@ -11,9 +11,9 @@ class UserNotesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\User::class, 6)->create()->each(function ($u) {
+        factory(App\Models\User::class, 2)->create()->each(function ($u) {
             $u->note()->saveMany(
-                factory(\App\Models\Note::class, rand(3, 5))->make()
+                factory(\App\Models\Note::class, rand(1, 2))->make()
             );
         });
     }

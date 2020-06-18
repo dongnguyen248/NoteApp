@@ -77,5 +77,11 @@
             @yield('content')
         </main>
     </div>
+    <script>
+        window.Auth =  @json([ //https://laravel.com/docs/7.x/blade
+            'signIn' => Auth::check(),
+            'user' => Auth::user()
+        ]); 
+        </script>
 </body>
 </html>

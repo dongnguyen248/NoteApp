@@ -18,6 +18,7 @@ class NotesApiController extends Controller
         $note = new Note();
         $note->title = $request->get('title');
         $note->body = $request->get('body');
+        $note->user_id = $request->get('user_id');
         $note->save();
         return response()->json($note);
     }

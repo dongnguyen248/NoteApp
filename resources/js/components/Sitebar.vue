@@ -17,11 +17,8 @@
             />
           </div>
           <div class="user-info">
-            <span class="user-name">
-              Jhon
-              <strong>Smith</strong>
-            </span>
-            <span class="user-role">Administrator</span>
+            <span class="user-name">{{ username }}</span>
+            <span class="user-role">User</span>
             <span class="user-status">
               <i class="fa fa-circle"></i>
               <span>Online</span>
@@ -48,7 +45,8 @@
               <span>General</span>
             </li>
             <li class="sidebar">
-              <a href="/notes/create">
+              <!-- <create @created="add" /> -->
+              <a @click="show">
                 <i class="fas fa-plus"></i>
                 <span>New</span>
               </a>
@@ -79,7 +77,22 @@
   </div>
 </template>
 <script>
-export default {};
+import Create from "./Create";
+export default {
+  data() {
+    return {
+      username: window.Auth.user.name
+    };
+  },
+  methods: {
+    show() {
+      this.$modal.show("create-note");
+    }
+  },
+  components: {
+    Create
+  }
+};
 </script>
 
 <style scoped>
